@@ -7,10 +7,10 @@
 </head>
 <body>
   <div class="jumbotron" style="background-color:white">
-      <img src="https://octodex.github.com/images/spidertocat.png" alt="Spidertocat"
+      <img src="https://octodex.github.com/nuxtocat.gif" alt="Spidertocat"
            class="img-responsive center-block" style="width:250px"/>
-      <h1 class="text-center">Hello BOZZZ</h1>
-      <p class="text-center">Get ready for a DevOps ride! New Change! Updated for webhook --- DevopsCetrificationP-Batch-OCT.2022</p>
+      <h3 class="text-center">Hello BOZZZ</h3>
+      <p class="text-center">Get ready for a DevOps ride! New Change! From CHandru Webhook as been Updated---DevopsCetrification-Batch-OCT.2022</p>
   </div>
 </body>
 </html>
