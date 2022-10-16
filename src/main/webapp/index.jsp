@@ -7,7 +7,7 @@
 </head>
 <body>
   <div class="jumbotron" style="background-color:white">
-      <img src="https://octodex.github.com/yogitocat.png" alt="NUXtocat"
+      <img src="https://octodex.github.com/images/NUX_Octodex.gif" alt="Yogitocat"
            class="img-responsive center-block" style="width:250px"/>
       <h3 class="text-center">Hello BOZZZ</h3>
       <p class="text-center">Get ready for a DevOps ride! New Change! From CHandru Webhook as been Updated---DevopsCetrification-Batch-OCT.2022</p>
