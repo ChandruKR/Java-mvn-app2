@@ -6,7 +6,7 @@
 	<artifactId>mvn-hello-chandru</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>mvn-hello-world Maven Webapp</name>
+	<name>mvn-hello-chandru Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
