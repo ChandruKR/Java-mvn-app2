@@ -1,42 +1,53 @@
 pipeline {
-    agent { label 'slave1' }
+    
+    agent {
+        label 'TEst'
+    }
 
-    tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "MAVEN"
+    tools 
+    {
+        maven 'MAVEN'
     }
     
     stages {
-        stage('SCM Checkout') {
+        stage('SCM-Checkout') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/LoksaiETA/Java-mvn-app2.git'
-				//git clone git 'https://loksaieta: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@github.com/LoksaiETA/Java-mvn-app2.git'
-				//git git@github.com:LoksaiETA/Java-mvn-app2.git
+                git 'https://github.com/ChandruKR/Java-mvn-app2.git'
+
             }
-		}
-        stage('Maven Build') {
+			}
+		        stage("Compile"){
+            steps{
+                sh "mvn clean compile"
+            }
+        }
+        
+         stage("Test Cases"){
+            steps{
+                sh "mvn test"
+            }
+        }
+        
+        stage('Sonarqube Analysis & Build') {
             steps {
                 // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
-            }
-		}
-        stage('Approval Step'){
-            steps{
+                sh ''' mvn sonar:sonar -Dsonar.url=http://3.255.121.66:9000/ -Dsonar.login=sqa_4089ea6fd95566860b6d309a9892094b940bf48c -Dsonar.projectName=Project_sonar_Test \
+                -Dsonar.java.binaries=. \
+                    -Dsonar.projectKey=Project_sonar_Test '''
                 
-                //----------------send an approval prompt-------------
-                script {
-                   env.APPROVED_DEPLOY = input message: 'User input required Choose "yes" | "Abort"'
-                       }
-                //-----------------end approval prompt------------
             }
-        }
-        stage('Deploy to QA AppServer') {
+			}
+		 stage('Deploy to Test AppServer') {
             steps {
 				script {
-                    sshPublisher(publishers: [sshPublisherDesc(configName: 'QAServer', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: 'target/', sourceFiles: 'target/mvn-hello-world.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+				    
+				    sh "hostname "
+                    sshPublisher(publishers: [sshPublisherDesc(configName: 'TEst', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: 'target', sourceFiles: 'target/mvn-hello-chandru.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
 				}
             }
-		}
-	}
+		 }
+			
+        }
 }
